@@ -37,15 +37,15 @@ public class QuickSort {
 
   public static void main(String[] args) {
     Vector<Integer> list = new Vector<Integer>();
-    list.add(new Integer(9));
     list.add(new Integer(8));
-    list.add(new Integer(7));
-    list.add(new Integer(6));
-    list.add(new Integer(5));
-    list.add(new Integer(4));
-    list.add(new Integer(3));
+    list.add(new Integer(22));
     list.add(new Integer(2));
-    list.add(new Integer(1));
+    list.add(new Integer(40));
+    list.add(new Integer(9));
+    list.add(new Integer(11));
+    list.add(new Integer(2));
+    list.add(new Integer(15));
+    list.add(new Integer(4));
 
     QuickSort quickSort = new QuickSort();
     quickSort.print(list);
