@@ -5,6 +5,8 @@ public class Node<E extends Comparable<E>> implements Comparable<Node<E>> {
 
   public Node(E data) {
     this.data = data;
+    this.left = null;
+    this.right = null;
   }
 
   public E getData() {
