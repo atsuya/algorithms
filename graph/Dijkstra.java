@@ -49,16 +49,6 @@ public class Dijkstra {
     }
   }
 
-  public void updateDistance(Hashtable<String, Integer> distances, Vertex vertex, int distance) {
-    String name = vertex.getName();
-
-    if (distances.containsKey(name)) {
-      distances.remove(name);
-    }
-
-    distances.put(name, distance);
-  }
-
   public static void main(String[] args) {
     Vector<Vertex> vertices = new Vector<Vertex>();
     Vertex a = new Vertex("A");
