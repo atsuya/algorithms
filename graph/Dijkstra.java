@@ -79,7 +79,6 @@ public class Dijkstra {
     Edge edgeDF = new Edge(d, f, 11);
     d.edges().add(edgeDF);
 
-    Hashtable<String, Integer> distances = new Hashtable<String, Integer>();
     Hashtable<String, Edge> previouses = new Hashtable<String, Edge>();
 
     Dijkstra dijkstra = new Dijkstra();
