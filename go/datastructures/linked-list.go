@@ -1,7 +1,5 @@
-package main
+package datastructures
 
-import "fmf"
-
-func main() {
-	fmf.Println("hello fucking world")
+func Unko() string {
+	return "yo, geri unko"
 }
