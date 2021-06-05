@@ -1,6 +1,5 @@
 #include "vertex.h"
 
-Vertex::Vertex(std::string name, int32_t weight) {
-  this->name = name;
-  this->weight = weight;
-}
+Vertex::Vertex(std::string name) { this->name_ = name; }
+
+std::string Vertex::GetName() const { return this->name_; }

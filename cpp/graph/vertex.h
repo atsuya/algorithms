@@ -5,10 +5,13 @@
 
 class Vertex {
  public:
-  int32_t weight;
-  std::string name;
-
   Vertex() = delete;
+  Vertex(const std::string name);
+  Vertex(const Vertex&) = delete;
+  Vertex& operator=(const Vertex&) = delete;
 
-  Vertex(std::string name, int32_t weight);
+  std::string GetName() const;
+
+ private:
+  std::string name_;
 };
