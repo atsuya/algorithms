@@ -32,6 +32,7 @@ class Dijkstra {
  private:
   void Initialize();
   std::string MinimumDistance();
+  void PrintVisitedPath(const Vertex* start, const Vertex* goal);
 
   std::unordered_map<std::string, std::unordered_map<std::string, int32_t>>
       graph_;

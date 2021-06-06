@@ -3,12 +3,15 @@
 
 #include <iostream>
 #include <queue>
+#include <stack>
 #include <unordered_map>
 #include <vector>
 
 const int32_t kInfinity = 100000;
 
 void Dijkstra::Run(const Vertex* start, const Vertex* goal) {
+  this->Initialize();
+
   std::cout << "Finding the shortest path: [" << start->GetName() << ", "
             << goal->GetName() << "]\n";
 
@@ -16,28 +19,20 @@ void Dijkstra::Run(const Vertex* start, const Vertex* goal) {
   for (auto& vertex : kVertices) {
     distances_[vertex.first] = kInfinity;
     previous_[vertex.first] = "";
-
-    std::cout << "Adding to verticies to visit: " << vertex.first << "\n";
     vertices_to_visit_.insert({vertex.first, nullptr});
   }
-  std::cout << "Vertices to visit: " << vertices_to_visit_.size() << "\n";
 
   // source
   distances_[start->GetName()] = 0;
 
   while (vertices_to_visit_.size() > 0) {
     auto next = this->MinimumDistance();
-    std::cout << "Next: " << next << "\n";
-
-    std::cout << "Vertices to visit [before]: " << vertices_to_visit_.size()
-              << "\n";
     vertices_to_visit_.erase(next);
-    std::cout << "Vertices to visit [after]: " << vertices_to_visit_.size()
-              << "\n";
 
     // check if we reached the goal
     if (next == goal->GetName()) {
-      std::cout << "reached the goal: " << next << "\n";
+      this->PrintVisitedPath(start, goal);
+      return;
     }
 
     for (auto& neighbor : this->graph_[next]) {
@@ -100,11 +95,8 @@ std::string Dijkstra::MinimumDistance() {
   int32_t minimum_distance = kInfinity;
 
   for (auto& entry : distances_) {
-    std::cout << "Checking distance: " << entry.first << "\n";
-
     auto ite = vertices_to_visit_.find(entry.first);
     if (ite == vertices_to_visit_.end()) {
-      std::cout << "Not in visitted list, skipping\n";
       continue;
     }
 
@@ -115,6 +107,25 @@ std::string Dijkstra::MinimumDistance() {
   }
 
   return minimum_vertex;
+}
+
+void Dijkstra::PrintVisitedPath(const Vertex* start, const Vertex* goal) {
+  std::stack<std::string> paths;
+
+  auto current = goal->GetName();
+  while (start->GetName() != current) {
+    paths.push(current);
+    current = previous_[current];
+  }
+
+  paths.push(current);
+  while (!paths.empty()) {
+    auto name = paths.top();
+    paths.pop();
+
+    std::cout << name << " ";
+  }
+  std::cout << "\n";
 }
 
 int main() {
